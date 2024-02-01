@@ -1,9 +1,9 @@
 library(tidyr)
 library(dplyr)
 library(stringr)
-install.packages("readxl")
+#install.packages("readxl")
 library(readxl)
-install.packages("ggplot2")
+#install.packages("ggplot2")
 library(ggplot2)
 
 
@@ -87,5 +87,38 @@ main %>%
   ggplot(aes(x = count)) +
   geom_histogram(bins = 50, fill = "yellow") +
   labs(y = "frequency")
-  
 
+
+# Session 4 starts --------------------------------------------------------
+
+#What is the mean species richness for each habitat type?
+
+# Check what our sample units are
+main %>%
+  select(collectdate, site) %>%
+  unique() %>%
+  arrange(site)
+
+# Combine site and collect date to make unique sample units
+# Make a boxplot
+main %>%
+  group_by(collectdate, site, main_forest_type) %>% # each group is a sample unit
+  summarise(richness = sum(count > 0)) %>%
+  ungroup() %>% # ungroup afterwards to make it easier to work with after
+  ggplot(aes(x = main_forest_type, y = richness)) +
+  geom_boxplot()
+
+# Mean and standard deviation
+
+main %>%
+  group_by(collectdate, site, main_forest_type) %>% # each group is a sample unit
+  summarise(richness = sum(count > 0)) %>%
+  ungroup() %>%
+  group_by(main_forest_type) %>%
+  summarise(mean = mean(richness),
+            sd = sd(richness)) %>%
+  ungroup() %>%
+  ggplot(aes( x = main_forest_type, y = mean,
+              ymin = mean - sd, ymax = mean + sd)) +
+  geom_point() +
+  geom_errorbar()
