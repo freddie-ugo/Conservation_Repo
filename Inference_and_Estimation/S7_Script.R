@@ -2,7 +2,6 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(ggfortify)
-install.packages("dgof")
 library(dgof)
 
 # Load the data
