@@ -109,3 +109,4 @@ for (i in 1:nrow(data_3_ce_ranked)) {
 }
 
 data_3_ce_ranked$chosen_column <- ifelse(data_3_ce_ranked$common_name %in% chosen_names_2, data_3_ce_ranked$common_name, NA_character_)
+
