@@ -36,3 +36,4 @@ ggplot(plot_data, aes(x = Investment, y = S, color = Scenario, group = interacti
        y = "Number of Assets Protected (S)",
        color = "Intervention and Ecoregion") +
   theme_minimal()
+

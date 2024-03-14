@@ -45,3 +45,4 @@ ggplot(data, aes(x, y)) +
   scale_x_continuous(breaks = seq(0, 5000000, by = 1000000), labels = label_number(scale = 1e-6, suffix = "M")) +
   theme_minimal() +
   labs(title = "Investment Curve for Cinnamon Fungus in Eyre and York mallee", x = "Investment (Millions of Dollars)", y = "Species")
+
